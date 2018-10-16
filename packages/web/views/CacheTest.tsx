@@ -1,34 +1,23 @@
 import * as React from "react";
 
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { UserQuery } from './UserQuery'
 
-
-
+interface PropsType { }
 interface StateType {
     count: number
 }
-class CacheTest extends React.Component<null, StateType> {
-    constructor(props: null) {
+
+
+
+class CacheTest extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
         super(props)
 
 
         this.state = {
             count: 0
         }
-    }
-
-    private getUserQuery = (id: string) => {
-        const graphqlQuery = gql`
-            query {
-            user(id: ${id}) {
-                name
-                id
-            }
-        }
-        `
-
-        return graphqlQuery;
     }
 
     private nextCount = () => {
@@ -40,20 +29,7 @@ class CacheTest extends React.Component<null, StateType> {
     render() {
         return (<>
             <button onClick={this.nextCount}>Next User</button>
-            <Query
-                query={this.getUserQuery(this.state.count + "")}>
-                {({ loading, error, data }) => {
-                    if (loading) return <p>Query Loading...</p>;
-                    if (error) return <p>Query Error :(</p>;
-
-                    // console.log("react query", data);
-                    return (
-                        <div>
-                            <div>DATA: {JSON.stringify(data)}</div>
-                        </div>
-                    );
-                }}
-            </Query>
+            <UserQuery id={this.state.count + ""}></UserQuery>
         </>)
     }
 

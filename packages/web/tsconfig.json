@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "module": "esnext",
+        "target": "es5",
+        "lib": ["es2016", "dom"],
+        "jsx": "react",
+        "moduleResolution": "node"
+    },
+    "include": [
+        "./**/*"
+    ]
+}

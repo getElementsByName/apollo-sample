@@ -12,6 +12,7 @@
     "@types/koa-router": "^7.0.32",
     "apollo-server-koa": "^2.1.0",
     "graphql": "^14.0.2",
+    "graphql-fields": "^1.2.1",
     "koa": "^2.5.3",
     "koa-router": "^7.4.0",
     "merge-graphql-schemas": "^1.5.7",

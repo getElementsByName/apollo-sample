@@ -31,7 +31,8 @@ type Variables = {
 
 const withUser = graphql<InputProps, Response, Variables>(USER_QUERY, {
     options: ({ id } /* input props */) => ({
-        variables: { id }
+        variables: { id },
+        // fetchPolicy: "no-cache"
     }),
     props: ({ data }) => {
         return {

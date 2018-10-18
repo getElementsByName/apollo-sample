@@ -7,11 +7,14 @@ type ApolloCacheType = any;
 
 interface AppRootProps {
   apolloClient: ApolloClient<ApolloCacheType>;
+  Router: React.ComponentType
 }
 
-const App = ({ apolloClient }) => (
+const App: React.SFC<AppRootProps> = ({ apolloClient, Router }) => (
   <ApolloProvider client={apolloClient}>
-    <AppReactRouter />
+    <Router>
+      <AppReactRouter />
+    </Router>
   </ApolloProvider>
 );
 

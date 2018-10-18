@@ -1,11 +1,26 @@
 import * as React from "react";
-import { Route, Switch } from "react-router";
+import { Route, Link } from "react-router-dom";
 import { Home } from "../views/Home";
+import { BookmarkPage } from "../views/bookmark/BookmarkPage";
 
 export class AppReactRouter extends React.Component {
     public render() {
         return (
-           <Home></Home>
+            <div>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/bookmarks">bookmarks</Link>
+                </li>
+             
+              </ul>
+        
+        
+              <Route exact path="/" component={Home} />
+              <Route path="/bookmarks" component={BookmarkPage} />
+            </div>
         );
     }
 }

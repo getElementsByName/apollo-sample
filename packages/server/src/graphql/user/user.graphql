@@ -5,6 +5,11 @@ type User {
   bookmarkList: [LocalBusiness]
 }
 
+type Mutation {
+  addBookmark(localBusinessId: ID!): User
+  removeBookmark(localBusinessId: ID!): User
+}
+
 type Query {
   getUser(id: ID!): User
 }

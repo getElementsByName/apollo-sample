@@ -1,6 +1,8 @@
-import { GLOBAL_INITIAL_STATE_NAME } from "../html";
+import * as React from "react";
 import ApolloClient from "apollo-boost";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { BrowserRouter } from "react-router-dom";
+import { GLOBAL_INITIAL_STATE_NAME } from "../html";
 
 const APOLLO_INITIAL_STATE_NAME = "__APOLLO_STATE__";
 type ApolloCacheType = any
@@ -15,13 +17,17 @@ declare global {
 
 class BrowserProps {
   apolloClient: ApolloClient<ApolloCacheType>;
-
+  Router: React.ComponentType
   constructor() {
     const apolloClient = new ApolloClient({
       // uri: "http://localhost:3000/graphql"
       cache: new InMemoryCache().restore(window[APOLLO_INITIAL_STATE_NAME])
     });
     this.apolloClient = apolloClient;
+    const Router: React.SFC = ({children}) => {
+      return <BrowserRouter>{children}</BrowserRouter>
+    }
+    this.Router = Router
   }
 }
 

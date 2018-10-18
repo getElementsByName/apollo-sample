@@ -5,8 +5,8 @@ import { AppRoot } from "../page-root/AppRoot";
 import { ServerProps, APOLLO_INITIAL_STATE_NAME } from "../page-root/props/server";
 import { getDataFromTree } from "react-apollo";
 
-async function renderAppByUrl() {
-  const serverAppProps = new ServerProps();
+async function renderAppByUrl(requestUrl: string) {
+  const serverAppProps = new ServerProps(requestUrl);
   const app = <AppRoot {...serverAppProps} />;
 
   // console.log("before apollo");
@@ -38,9 +38,14 @@ function renderHTML({ requestUrl }: { requestUrl: string }) {
     htmlString: string;
   }
   let appRenderPromise: PromiseLike<RenderResult>;
-  const isFullRender = true
+
+
+  // const isFullRender = true
+  const isFullRender = false
+
+
   if (isFullRender) {
-    const renderPromise = renderAppByUrl();
+    const renderPromise = renderAppByUrl(requestUrl);
 
     appRenderPromise = renderPromise.then(
       ({ htmlString, apolloState }) => {

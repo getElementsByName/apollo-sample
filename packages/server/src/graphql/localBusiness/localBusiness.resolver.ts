@@ -1,4 +1,4 @@
-import { whyRestaurant } from './localBusuness.mock'
+import { localBusinessTable } from './localBusuness.mock'
 import { delegateToSchema } from 'graphql-tools';
 import { schema } from '../'
 
@@ -20,10 +20,7 @@ const query = {
   getLocalBusiness: async (parent, args, context, info) => {
     // console.log("getLocalBusiness", args)
 
-    return {
-      ...whyRestaurant,
-      id: args.id
-    }
+    return localBusinessTable[args.id]
   }
 };
 

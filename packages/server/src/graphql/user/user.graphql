@@ -1,4 +1,5 @@
 type User {
+  maskingId: String
   name: String
   id: ID
   bookmarkList: [LocalBusiness]

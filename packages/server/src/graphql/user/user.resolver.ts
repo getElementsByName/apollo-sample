@@ -1,18 +1,27 @@
 
 import { delegateToSchema } from 'graphql-tools';
 import { schema } from '../'
+import { userTableMock } from './user.mock'
+
 
 const type = {
-  name: (...args) => {
-    return "USER-NAME" + Math.random()
+  maskingId: (parent) => {
+    const id: string = parent.id
+    const visibleFirsLength = 5
+    const first = id.substring(0, visibleFirsLength);
+    const masking = id.substring(visibleFirsLength, id.length).replace(/./g,"*");
+    return first + masking  // "whynot000" -> "whyno****"
   },
+
   bookmarkList: async (parent, args, context, info) => {
-    console.log(parent)
+    // console.log("bookarmkList parent:", parent)
     return delegateToSchema({
       schema: schema,
       operation: 'query',
       fieldName: 'getBookmarkList',
-      args: null,
+      args: {
+        userId:  parent.id
+      },
       context,
       info,
     });
@@ -20,12 +29,8 @@ const type = {
 }
 
 const query = {
-  getUser: async (parent, { id }, context, info) => {
-    const params = { id }
-
-    return {
-      id,
-    }
+  getUser: async (parent, args, context, info) => {
+    return userTableMock[args.id]
   }
 };
 

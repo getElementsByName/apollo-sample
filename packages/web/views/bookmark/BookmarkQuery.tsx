@@ -41,17 +41,18 @@ type SchemaVariables = {
     id: string
 };
 
-
+// Query HOC 생성자
 const injectGraphqlDataToProps = graphql<InputProps, ResponseData, SchemaVariables>(USER_QUERY, {
-    options: ({ id } /* input props */) => ({
+    options: ({ id } /* input props */) => ({   // 외부 props로 받은 데이터 바인딩
         variables: { id },
         // fetchPolicy: "no-cache"
     }),
-    props: (resultOptions) => {
+    props: (resultOptions) => { // 내부 data로 내보낼 데이터 정제
         return resultOptions
     }
 });
 
+// 외부 props + 내부 props (data 상태를 표현하는 타입 추가)
 type InjectedProps = ChildDataProps<InputProps, ResponseData, SchemaVariables>;
 
 class BookmarkQueryView extends React.Component<InjectedProps, {}> {
@@ -61,7 +62,6 @@ class BookmarkQueryView extends React.Component<InjectedProps, {}> {
         if (loading) return <p>Query Loading...</p>;
         if (error) return <p>Query Error :(</p>;
 
-        // console.log("react query", user);
         return this.props.children(getUser)
     }
 }

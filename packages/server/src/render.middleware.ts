@@ -8,6 +8,9 @@ async function renderWeb(ctx: Koa.Context, next: Function) {
 }
 
 const renderRouter = new Router()
+renderRouter.get("/favicon.ico", (ctx: Koa.Context, next: Function) => {
+    ctx.status = 404
+})
 renderRouter.get("*", renderWeb)
 
 export { renderRouter }

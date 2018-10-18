@@ -9,7 +9,6 @@ interface StateType {
 }
 
 
-
 class BookmarkPage extends React.Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props)

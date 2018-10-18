@@ -62,6 +62,7 @@ class BookmarkQueryView extends React.Component<InjectedProps, {}> {
         if (loading) return <p>Query Loading...</p>;
         if (error) return <p>Query Error :(</p>;
 
+            console.log("BookmarkQueryView (data): ", this.props.data)
         return this.props.children(getUser)
     }
 }

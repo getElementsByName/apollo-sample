@@ -1,8 +1,9 @@
 type User {
   name: String
-  id: String
+  id: ID
+  bookmarkList: [LocalBusiness]
 }
 
 type Query {
-  user(id: ID!): User
+  getUser(id: ID!): User
 }

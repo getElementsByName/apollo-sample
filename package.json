@@ -7,6 +7,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "web:start": "yarn workspace @apollo-sample/web webpack:server",
+    "server:start": "yarn workspace @apollo-sample/server start:dev"
   },
   "author": "",
   "license": "ISC"

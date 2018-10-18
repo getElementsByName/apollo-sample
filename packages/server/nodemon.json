@@ -1,6 +1,6 @@
 {
     "watch": ["../"],
-    "ext": "ts,tsx",
+    "ext": "ts,tsx,graphql",
     "ignore": ["src/**/*.spec.ts", "node_modules"],
     "exec": "node ./src/run.index.js"
 }

@@ -1,15 +1,35 @@
 
+import { delegateToSchema } from 'graphql-tools';
+import { schema } from '../'
+
+const type = {
+  name: (...args) => {
+    return "USER-NAME" + Math.random()
+  },
+  bookmarkList: async (parent, args, context, info) => {
+    console.log(parent)
+    return delegateToSchema({
+      schema: schema,
+      operation: 'query',
+      fieldName: 'getBookmarkList',
+      args: null,
+      context,
+      info,
+    });
+  }
+}
+
 const query = {
-  user: async (parent, { id }) => {
+  getUser: async (parent, { id }, context, info) => {
     const params = { id }
-    
+
     return {
-        id,
-        name: "USER-NAME"
+      id,
     }
   }
 };
 
 export default {
-  Query: query
+  Query: query,
+  User: type
 }

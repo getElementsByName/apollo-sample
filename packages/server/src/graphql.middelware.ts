@@ -1,12 +1,8 @@
 import * as Koa from "koa"
-import { ApolloServer, makeExecutableSchema } from "apollo-server-koa"
-import { typeDefs, resolvers } from "./graphql"
+import { ApolloServer } from "apollo-server-koa"
+import { schema} from "./graphql"
 
 
-const schema = makeExecutableSchema({
-    typeDefs,
-    resolvers
-})
 
 
 
@@ -18,4 +14,4 @@ function applyMiddlewareToApp(app: Koa){
     apolloServer.applyMiddleware({app})
 }
 
-export { applyMiddlewareToApp }
+export { applyMiddlewareToApp, schema }

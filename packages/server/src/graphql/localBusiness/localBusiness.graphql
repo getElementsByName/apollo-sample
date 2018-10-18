@@ -1,0 +1,9 @@
+type LocalBusiness {
+  name: String
+  id: ID
+}
+
+type Query {
+  getLocalBusiness(id: ID!): LocalBusiness
+  getLocalBusinessList(idList: [ID]!): [LocalBusiness]
+}

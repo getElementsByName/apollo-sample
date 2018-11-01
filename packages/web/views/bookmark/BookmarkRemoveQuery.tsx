@@ -37,7 +37,7 @@ type SchemaVariables = {
     localBusinessId: string
 };
 
-class RemoveBookmarkMutation extends Mutation<ResponseData, SchemaVariables> { }
+class RemoveBookmarkMutation extends Mutation<ResponseData, SchemaVariables> { } 
 
 interface PropsType {
     id: string
@@ -46,7 +46,9 @@ interface PropsType {
 
 const RemoveBookmark: React.SFC<PropsType> = ({id}) => {
     return (
-        <RemoveBookmarkMutation mutation={BOOKMARKREMOVE_QUERY}>
+        <RemoveBookmarkMutation
+            mutation={BOOKMARKREMOVE_QUERY}
+            >
             {(removeBookmark, { data }) => (
                 <button onClick={() => {
                     removeBookmark({

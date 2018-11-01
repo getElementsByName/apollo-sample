@@ -47,6 +47,7 @@ const injectGraphqlDataToProps = graphql<InputProps, ResponseData, SchemaVariabl
         variables: { id },
         // fetchPolicy: "no-cache"
     }),
+
     props: (resultOptions) => { // 내부 data로 내보낼 데이터 정제
         return resultOptions
     }
@@ -71,4 +72,4 @@ class BookmarkQueryView extends React.Component<InjectedProps, {}> {
 const BookmarkQuery = injectGraphqlDataToProps(BookmarkQueryView)
 
 
-export { BookmarkQuery }
+export { BookmarkQuery, USER_QUERY }

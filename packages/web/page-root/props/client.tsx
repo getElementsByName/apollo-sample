@@ -23,6 +23,9 @@ class BrowserProps {
       // uri: "http://localhost:3000/graphql"
       cache: new InMemoryCache().restore(window[APOLLO_INITIAL_STATE_NAME])
     });
+
+    (window as any)._debug_apllocache = apolloClient
+    
     this.apolloClient = apolloClient;
     const Router: React.SFC = ({children}) => {
       return <BrowserRouter>{children}</BrowserRouter>

@@ -1,5 +1,20 @@
+type BookmarkEdge {
+  node: LocalBusiness
+  cursor: ID!
+}
 
+type PageInfo {
+  endCursor: ID!
+  hasNextPage: Boolean
+}
+
+type BookmarkConnection {
+  totalCount: Int!
+  edges: [BookmarkEdge]
+  pageInfo: PageInfo
+}
 
 type Query {
+  getBookmarkPagination(userId: ID!, first:Int after:ID): BookmarkConnection
   getBookmarkList(userId: ID!):  [LocalBusiness]
 }

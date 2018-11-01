@@ -3,6 +3,7 @@ import { Route, Link } from "react-router-dom";
 import { Home } from "../views/Home";
 import { BookmarkPage } from "../views/bookmark/BookmarkPage";
 import { LocalbusinessPage } from "../views/localBusiness/LocalBusinessPage";
+import { BookmarkPaginationPage } from "../views/bookmarkPagination/BookmarkPaginationPage";
 
 export class AppReactRouter extends React.Component {
   public render() {
@@ -18,12 +19,16 @@ export class AppReactRouter extends React.Component {
           <li>
             <Link to="/localbusiness">localbusiness</Link>
           </li>
+          <li>
+            <Link to="/bookmarkPaginationPage">bookmarkPaginationPage</Link>
+          </li>
         </ul>
 
 
         <Route exact path="/" component={Home} />
         <Route path="/bookmarks" component={BookmarkPage} />
         <Route path="/localbusiness" component={LocalbusinessPage} />
+        <Route path="/bookmarkPaginationPage" component={BookmarkPaginationPage} />
       </div>
     );
   }

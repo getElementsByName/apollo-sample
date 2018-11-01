@@ -2,15 +2,18 @@ import * as React from "react";
 import gql from "graphql-tag";
 import { graphql, ChildDataProps } from "react-apollo";
 
-const BOOKMARK_PAGINATION_QUERY = gql`
+const BOOKMARK_PAGINATION_QUERY_NO_ID = gql`
+fragment localBusiness on LocalBusiness {
+  name
+  id
+}
 
 query bookmarkPagination($userId: ID!, $first: Int, $after: ID) {
   getBookmarkPagination(first:  $first, userId: $userId, after: $after) @connection(key: "getBookmarkPaginationKey", filter: ["userId"]) {
     totalCount
     edges {
         node {
-            id
-            name
+            ...localBusiness
         }
         cursor
     }
@@ -24,7 +27,6 @@ query bookmarkPagination($userId: ID!, $first: Int, $after: ID) {
 
 type BookmarkLocalBusiness = {
     name: string;
-    id: string;
 }
 
 type ResponseData = {
@@ -55,7 +57,7 @@ type SchemaVariables = {
 };
 
 // Query HOC 생성자
-const injectGraphqlDataToProps = graphql<InputProps, ResponseData, SchemaVariables>(BOOKMARK_PAGINATION_QUERY, {
+const injectGraphqlDataToProps = graphql<InputProps, ResponseData, SchemaVariables>(BOOKMARK_PAGINATION_QUERY_NO_ID, {
     options: ({ userId, first } /* input props */) => ({   // 외부 props로 받은 데이터 바인딩
         variables: { userId, first },
         // fetchPolicy: "no-cache"
@@ -71,7 +73,7 @@ type InjectedProps = ChildDataProps<InputProps, ResponseData, SchemaVariables>;
 
 
 
-class BookmarkQueryView extends React.Component<InjectedProps, {}> {
+class TypeConflictQueryView extends React.Component<InjectedProps, {}> {
     render() {
         const { loading, getBookmarkPagination, error, refetch, fetchMore  } = this.props.data;
 
@@ -119,21 +121,5 @@ class BookmarkQueryView extends React.Component<InjectedProps, {}> {
     }
 }
 
-
-const BookmarkQuery = injectGraphqlDataToProps(BookmarkQueryView)
-
-
-
-const RESET_QUERY = gql`
-query bookmarkPagination($userId: ID!) {
-  getBookmarkPagination(userId: $userId) @connection(key: "getBookmarkPaginationKey", filter: ["userId"]) {
-    edges {
-        node {
-            id
-        }
-    }
-  }
-}`
-
-
-export { BookmarkQuery, BOOKMARK_PAGINATION_QUERY, ResponseData, RESET_QUERY }
+const TypeConflictQuery = injectGraphqlDataToProps(TypeConflictQueryView)
+export { BOOKMARK_PAGINATION_QUERY_NO_ID, ResponseData, TypeConflictQuery }

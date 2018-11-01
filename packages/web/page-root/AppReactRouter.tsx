@@ -4,6 +4,7 @@ import { Home } from "../views/Home";
 import { BookmarkPage } from "../views/bookmark/BookmarkPage";
 import { LocalbusinessPage } from "../views/localBusiness/LocalBusinessPage";
 import { BookmarkPaginationPage } from "../views/bookmarkPagination/BookmarkPaginationPage";
+import { TypeConflictPage } from "../views/typeConflict/TypeConflictPage";
 
 export class AppReactRouter extends React.Component {
   public render() {
@@ -22,6 +23,9 @@ export class AppReactRouter extends React.Component {
           <li>
             <Link to="/bookmarkPaginationPage">bookmarkPaginationPage</Link>
           </li>
+          <li>
+            <Link to="/typeConflictPage">TypeConflictPage</Link>
+          </li>
         </ul>
 
 
@@ -29,6 +33,7 @@ export class AppReactRouter extends React.Component {
         <Route path="/bookmarks" component={BookmarkPage} />
         <Route path="/localbusiness" component={LocalbusinessPage} />
         <Route path="/bookmarkPaginationPage" component={BookmarkPaginationPage} />
+        <Route path="/typeConflictPage" component={TypeConflictPage} />
       </div>
     );
   }

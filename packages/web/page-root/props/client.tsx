@@ -1,11 +1,12 @@
 import * as React from "react";
-import ApolloClient from "apollo-boost";
+import ApolloClient from "apollo-client";
+import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { BrowserRouter } from "react-router-dom";
 import { GLOBAL_INITIAL_STATE_NAME } from "../html";
 
 const APOLLO_INITIAL_STATE_NAME = "__APOLLO_STATE__";
-type ApolloCacheType = any
+type ApolloCacheType = any;
 
 declare global {
   interface Window {
@@ -17,21 +18,23 @@ declare global {
 
 class BrowserProps {
   apolloClient: ApolloClient<ApolloCacheType>;
-  Router: React.ComponentType
+  Router: React.ComponentType;
   constructor() {
     const apolloClient = new ApolloClient({
-      // uri: "http://localhost:3000/graphql"
+      link: new HttpLink({
+        // uri: "http://localhost:3000/graphql"
+      }),
       cache: new InMemoryCache().restore(window[APOLLO_INITIAL_STATE_NAME])
     });
 
-    (window as any)._debug_apllocache = apolloClient
-    
+    (window as any)._debug_apllocache = apolloClient;
+
     this.apolloClient = apolloClient;
-    const Router: React.SFC = ({children}) => {
-      return <BrowserRouter>{children}</BrowserRouter>
-    }
-    this.Router = Router
+    const Router: React.SFC = ({ children }) => {
+      return <BrowserRouter>{children}</BrowserRouter>;
+    };
+    this.Router = Router;
   }
 }
 
-export {APOLLO_INITIAL_STATE_NAME, BrowserProps };
+export { APOLLO_INITIAL_STATE_NAME, BrowserProps };

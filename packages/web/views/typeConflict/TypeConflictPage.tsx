@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
-import { ApolloClient } from "apollo-boost";
+import { ApolloClient } from "apollo-client";
 import { TypeConflictQuery, ResponseData } from './TypeConflictQuery'
 
 interface PropsType { }

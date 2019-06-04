@@ -1,6 +1,6 @@
 import * as React from "react";
 // import { hot } from "react-hot-loader";
-import ApolloClient from "apollo-boost";
+import ApolloClient from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 import { AppReactRouter } from "./AppReactRouter";
 type ApolloCacheType = any;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ApolloProvider, ApolloConsumer } from "react-apollo";
-import { ApolloClient } from "apollo-boost";
+import { ApolloClient } from "apollo-client";
 import { USER_QUERY, } from '../bookmark/BookmarkQuery'
 import { BookmarkQuery, BOOKMARK_PAGINATION_QUERY, ResponseData, RESET_QUERY} from './BookmarkPaginationQuery'
 
